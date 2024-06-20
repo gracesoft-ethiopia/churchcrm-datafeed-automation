@@ -2,7 +2,7 @@ import fs from 'fs';
 import csv from 'csv-parser';
 import { Browser, Builder } from 'selenium-webdriver';
 import dotenv from 'dotenv';
-import loginUser, { exitBrowser, saveMember } from './loginuser.js';
+import loginUser, { exitBrowser, saveMember } from './actions.js';
 
 dotenv.config();
 
