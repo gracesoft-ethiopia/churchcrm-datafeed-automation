@@ -12,3 +12,8 @@ export default async function loginUser(driver, loggedinurl) {
   await driver.get(loggedinurl);
   await driver.sleep(1000);
 }
+
+export async function exitBrowser(driver) {
+  await driver.sleep(1000);
+  await driver.quit();
+}

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import csv from 'csv-parser';
-import { Browser, Builder, By, Key } from 'selenium-webdriver';
+import { Browser, Builder } from 'selenium-webdriver';
 import dotenv from 'dotenv';
-import loginUser from './loginuser.js';
+import loginUser, { exitBrowser } from './loginuser.js';
 
 dotenv.config();
 
@@ -25,6 +25,4 @@ fs.createReadStream('assets/members.csv')
     console.log('CSV file successfully processed');
   });
 
-await setTimeout(() => {
-  driver.quit();
-}, 5000);
+exitBrowser(driver);
