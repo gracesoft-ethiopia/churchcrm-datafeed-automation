@@ -19,10 +19,13 @@ fs.createReadStream('assets/members.csv')
     const username = await driver.findElement(By.name('User'));
     const password = await driver.findElement(By.name('Password'));
 
-    username.sendKeys(process.env.CRMUSER);
-    password.sendKeys(process.env.CRMPWD);
+    await username.sendKeys(process.env.CRMUSER);
+    await password.sendKeys(process.env.CRMPWD);
+    await loginForm.submit();
 
-    loginForm.submit();
+    await setTimeout(() => {
+      console.log('Waiting for 5 seconds');
+    }, 5000);
 
     // await driver.quit();
     // console.log(members);
