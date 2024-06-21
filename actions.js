@@ -28,6 +28,7 @@ export async function saveMember(driver, member, currentFamily) {
   const birthMonth = await driver.findElement(By.name('BirthMonth'));
   const birthDay = await driver.findElement(By.name('BirthDay'));
   const birthYear = await driver.findElement(By.name('BirthYear'));
+  const familyRole = await driver.findElement(By.name('FamilyRole'));
 
   const saveButton = await driver.findElement(By.name('PersonSubmitAndAdd'));
 
@@ -35,6 +36,7 @@ export async function saveMember(driver, member, currentFamily) {
   const genderSelect = new Select(gender);
   const birthMonthSelect = new Select(birthMonth);
   const birthDaySelect = new Select(birthDay);
+  const familyRoleSelect = new Select(familyRole);
 
   birthYear.clear();
 
@@ -45,6 +47,7 @@ export async function saveMember(driver, member, currentFamily) {
   await birthMonthSelect.selectByValue(randomToString(getRandomNumber(1, 12)));
   await birthDaySelect.selectByVisibleText(getRandomNumber(1, 28).toString());
   await birthYear.sendKeys(member['Birth Year']);
+  await familyRoleSelect.selectByValue(getFamilyRole(member));
 
   await saveButton.click();
 
@@ -93,4 +96,23 @@ function getDate(year) {
   return `${year}-${randomToString(getRandomNumber(1, 12))}-${randomToString(
     getRandomNumber(1, 28)
   )}`;
+}
+
+function getFamilyRole(member) {
+  if (member['ተ.ቁ'] !== '') {
+    return 1;
+  }
+
+  switch (member['Family condition']) {
+    case 'Mother':
+    case 'Father':
+      return 2;
+    case 'Child':
+    case 'grand child':
+      return 3;
+    case 'Relative':
+      return 4;
+    default:
+      return 0;
+  }
 }
