@@ -6,24 +6,26 @@ import loginUser, { exitBrowser, saveMember } from './actions.js';
 
 dotenv.config();
 
-const SYSTEM_BASE_URL = 'https://crm.amskhc.org';
-
 const members = [];
 
 let driver = await new Builder().forBrowser(Browser.CHROME).build();
 
-await driver.get(SYSTEM_BASE_URL);
+await driver.get(process.env.BASEURL);
 
-await loginUser(driver, `${SYSTEM_BASE_URL}/PersonEditor`);
+await loginUser(driver);
+
+await driver.get(`${process.env.BASEURL}/PersonEditor`);
 
 fs.createReadStream('assets/members.csv')
   .pipe(csv())
   .on('data', async (data) => {
-    members.push(data);
+    if (data['ተ.ቁ'] !== '') {
+      members.push(data);
+    }
   })
   .on('end', async () => {
     await saveMember(driver, members[0]);
-    console.log('CSV file successfully processed');
+    console.log(members);
   });
 
 exitBrowser(driver);

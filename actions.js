@@ -1,6 +1,6 @@
 import { By, Select } from 'selenium-webdriver';
 
-export default async function loginUser(driver, loggedinurl) {
+export default async function loginUser(driver) {
   const loginForm = await driver.findElement(By.name('LoginForm'));
   const username = await driver.findElement(By.name('User'));
   const password = await driver.findElement(By.name('Password'));
@@ -9,7 +9,6 @@ export default async function loginUser(driver, loggedinurl) {
   await password.sendKeys(process.env.CRMPWD);
   await loginForm.submit();
 
-  await driver.get(loggedinurl);
   await driver.sleep(1000);
 }
 
