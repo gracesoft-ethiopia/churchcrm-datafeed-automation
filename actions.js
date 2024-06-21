@@ -1,4 +1,4 @@
-import { By, Select } from 'selenium-webdriver';
+import { By, Select, until } from 'selenium-webdriver';
 
 export default async function loginUser(driver) {
   const loginForm = await driver.findElement(By.name('LoginForm'));
@@ -8,8 +8,6 @@ export default async function loginUser(driver) {
   await username.sendKeys(process.env.CRMUSER);
   await password.sendKeys(process.env.CRMPWD);
   await loginForm.submit();
-
-  await driver.sleep(1000);
 }
 
 export async function exitBrowser(driver) {
@@ -17,7 +15,12 @@ export async function exitBrowser(driver) {
   await driver.quit();
 }
 
-export async function saveMember(driver, member) {
+export async function saveMember(driver, member, currentFamily) {
+  await driver.get(
+    `${process.env.BASEURL}/PersonEditor.php?FamilyID=${currentFamily}`
+  );
+  await driver.wait(until.elementLocated(By.id('FirstName')));
+
   const gender = await driver.findElement(By.name('Gender'));
   const firstName = await driver.findElement(By.name('FirstName'));
   const middleName = await driver.findElement(By.name('MiddleName'));
@@ -34,7 +37,6 @@ export async function saveMember(driver, member) {
   const birthDaySelect = new Select(birthDay);
 
   birthYear.clear();
-  console.log(member);
 
   await genderSelect.selectByVisibleText(member['Gender']);
   await firstName.sendKeys(member['First name']);
@@ -44,7 +46,8 @@ export async function saveMember(driver, member) {
   await birthDaySelect.selectByVisibleText(getRandomNumber(1, 28).toString());
   await birthYear.sendKeys(member['Birth Year']);
 
-  // await saveButton.click();
+  await saveButton.click();
+
   await driver.sleep(2000);
 }
 
@@ -59,3 +62,35 @@ const randomToString = (random) => {
 
   return random.toString();
 };
+
+export async function saveFamily(driver, member) {
+  try {
+    await driver.get(`${process.env.BASEURL}/FamilyEditor`);
+    await driver.wait(until.elementLocated(By.id('FamilyName')));
+
+    console.log(member['First name']);
+
+    const familyName = await driver.findElement(By.name('Name'));
+    const weddingDate = await driver.findElement(By.name('WeddingDate'));
+    const saveButton = await driver.findElement(By.name('FamilySubmit'));
+
+    await familyName.sendKeys(`${member['First name']} ${member['Last Name']}`);
+    await weddingDate.sendKeys(getDate(member['የጋብቻ ዓ/ም']));
+
+    await saveButton.click();
+
+    await driver.wait(until.elementLocated(By.id('deleteFamilyBtn')));
+
+    const currentUrl = await driver.getCurrentUrl();
+    return currentUrl.split('/').pop();
+  } catch (error) {
+    console.log('Error saving family: ', error);
+    throw error;
+  }
+}
+
+function getDate(year) {
+  return `${year}-${randomToString(getRandomNumber(1, 12))}-${randomToString(
+    getRandomNumber(1, 28)
+  )}`;
+}
