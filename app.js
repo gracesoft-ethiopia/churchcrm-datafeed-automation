@@ -15,21 +15,19 @@ await driver.get(process.env.BASEURL);
 
 await loginUser(driver);
 
-fs.createReadStream('assets/members.csv')
+await fs
+  .createReadStream('assets/members.csv')
   .pipe(csv())
   .on('data', async (data) => {
     members.push(data);
   })
   .on('end', async () => {
-    currentFamily = await saveFamily(driver, members[0]);
-    await saveMember(driver, members[0], currentFamily);
-
-    // members.forEach((data) => {
-    //   if (data['ተ.ቁ'] !== '') {
-    //     currentFamily = saveFamily(driver, data);
-    //   }
-    //   saveMember(driver, data, currentFamily);
-    // });
+    for (const data of members) {
+      if (data['ተ.ቁ'] !== '') {
+        currentFamily = await saveFamily(driver, data);
+      }
+      await saveMember(driver, data, currentFamily);
+    }
   });
 
 // exitBrowser(driver);
