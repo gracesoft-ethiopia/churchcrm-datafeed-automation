@@ -100,6 +100,9 @@ function getDate(year) {
 
 function getFamilyRole(member) {
   if (member['ተ.ቁ'] !== '') {
+    if (member['Family condition'] == 'Unmarried') {
+      return 0;
+    }
     return 1;
   }
 
