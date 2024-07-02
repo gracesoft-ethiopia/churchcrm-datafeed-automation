@@ -1,6 +1,6 @@
 import fs from 'fs';
 import csv from 'csv-parser';
-import { Browser, Builder, By, until } from 'selenium-webdriver';
+import { Browser, Builder } from 'selenium-webdriver';
 import dotenv from 'dotenv';
 import loginUser, { exitBrowser, saveMember, saveFamily } from './actions.js';
 

@@ -35,6 +35,9 @@ export async function saveMember(driver, member, currentFamily) {
     const educationLevel = await driver.findElement(By.name('c3'));
     const occupation = await driver.findElement(By.name('c4'));
     const baptizm = await driver.findElement(By.name('c5'));
+    const classification = await driver.findElement(By.name('Classification'));
+    const cellPhone = await driver.findElement(By.name('CellPhone'));
+    const chapel = await await driver.findElement(By.name('c6'));
 
     const saveButton = await driver.findElement(By.name('PersonSubmitAndAdd'));
 
@@ -46,6 +49,8 @@ export async function saveMember(driver, member, currentFamily) {
     const educationLevelSelect = new Select(educationLevel);
     const occupationSelect = new Select(occupation);
     const baptizmSelect = new Select(baptizm);
+    const classificationSelect = new Select(classification);
+    const chapelSelect = new Select(chapel);
 
     birthYear.clear();
 
@@ -69,9 +74,22 @@ export async function saveMember(driver, member, currentFamily) {
         getDate(member['Become member of the church'])
       );
     }
-    await educationLevelSelect.selectByVisibleText(member['Education Level']);
-    await occupationSelect.selectByVisibleText(member['Occupation']);
-    await baptizmSelect.selectByVisibleText(member['Baptism']);
+    if (member['Education Level'] !== '') {
+      await educationLevelSelect.selectByVisibleText(member['Education Level']);
+    }
+    if (member['Occupation'] !== '') {
+      await occupationSelect.selectByVisibleText(member['Occupation']);
+    }
+    if (member['Baptism'] !== '') {
+      await baptizmSelect.selectByVisibleText(member['Baptism']);
+    }
+    if (member['Classification'] !== '') {
+      await classificationSelect.selectByVisibleText(
+        member['Classification'] + ' '
+      );
+    }
+    await cellPhone.sendKeys(member['Mobile']);
+    await chapelSelect.selectByVisibleText(member['Chapel']);
 
     await saveButton.click();
   } catch (error) {
