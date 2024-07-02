@@ -1,32 +1,34 @@
-const fs = require('fs');
-const csv = require('csv-parser');
-const { Browser, Builder, By, Key } = require('selenium-webdriver');
-require('dotenv').config();
+import fs from 'fs';
+import csv from 'csv-parser';
+import { Browser, Builder } from 'selenium-webdriver';
+import dotenv from 'dotenv';
+import loginUser, { exitBrowser, saveMember, saveFamily } from './actions.js';
 
-SYSTEM_URL = 'https://crm.amskhc.org/session/begin';
+dotenv.config();
 
+let currentFamily = 0;
 const members = [];
 
-fs.createReadStream('assets/members.csv')
+const driver = await new Builder().forBrowser(Browser.CHROME).build();
+
+await driver.get(process.env.BASEURL);
+
+await loginUser(driver);
+
+await fs
+  .createReadStream('assets/members.csv')
   .pipe(csv())
-  .on('data', (data) => {
+  .on('data', async (data) => {
     members.push(data);
   })
   .on('end', async () => {
-    let driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.get(SYSTEM_URL);
-    const loginForm = await driver.findElement(By.name('LoginForm'));
-    const username = await driver.findElement(By.name('User'));
-    const password = await driver.findElement(By.name('Password'));
-
-    await username.sendKeys(process.env.CRMUSER);
-    await password.sendKeys(process.env.CRMPWD);
-    await loginForm.submit();
-
-    await setTimeout(() => {
-      console.log('Waiting for 5 seconds');
-    }, 5000);
-
-    // await driver.quit();
-    // console.log(members);
+    for (const data of members) {
+      console.log(data);
+      if (data['ተ.ቁ'] !== '') {
+        currentFamily = await saveFamily(driver, data);
+      }
+      await saveMember(driver, data, currentFamily);
+    }
   });
+
+// exitBrowser(driver);
