@@ -23,6 +23,7 @@ await fs
   })
   .on('end', async () => {
     for (const data of members) {
+      console.log(data);
       if (data['ተ.ቁ'] !== '') {
         currentFamily = await saveFamily(driver, data);
       }

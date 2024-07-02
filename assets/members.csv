@@ -1,7 +1,47 @@
-ተ.ቁ,First name,Middle Name,Last Name,Gender,ዕድሜ,Birth Year,,ጌታን የተቀበለበት ዓ/ም,አባል የሆኑበት,የጋብቻ ሁኔታ,የጋብቻ ዓ/ም,Birth Date,የት/ም ደረጃ,የሥራ ሁኔታ,የጥምቀት ሁኔታ,የአገልግሎት ድርሻ,ስልክ,ምርመራ
-1,Asrat,,Tomas,Male,45,1977,Father,1983,2001,ያገባ,2000,15,12 + 6,መጋቢ,የተጠመቀ,መጋቢ,913500837,
-,Genet,,Gelaye,Female,36,1986,Mother,በልጅነት,2001,ያገባ,2000,15,ዲፕሎማ,መምህርት,የተጠመቀ,ኳየር,926409744,
-2,Ayenachew,Duka,Cherinet,Male,37,1985,Father,በልጅነት,2004,ያገባ,2001,14,10 + 3,ሾፌር,የተጠመቀ,አባል,911453475,
-,Tigist,Tsaha,Tsebaye,Female,33,1989,Mother,1993,1996,ያገባ,2001,14,ድግሪ,የቤ/እመቤት,የተጠመቀ,ኳየር,926400904,
-,Ruhama ,Cherinet,Ayenachew,Female,13,2009,Child,,,ያላገባ,,,6ኛ,ተማሪ,ያልተጠመቀ,ኳየር,,
-,Ruth,Cherinet,Ayenachew,Female,9,2013,Child,,,ያላገባ,,,2ኛ,ተማሪ,ያልተጠመቀ,ኳየር,,
+ተ.ቁ,First name,Middle Name,Last Name,Sex,Date of birth,Family condition,Became Christian,Become member of the church,Marital States,Marriage Year,Year in marrage,Education Level,Occupation,Baptism,Type of service in Church/Capil,Mobile,Chapil
+1,Asrat,Tomas,,Male,1977,Father,1991,2009,Married,2008,16,Diploma,Pastor,Baptized,Pastor,913500837,Wuha Minch 1
+,Genet,Gelaye,,Female,1986,Mother,From Family,2009,Married,2008,16,Diploma,Gov. worker,Baptized,Choir,926409744,Wuha Minch 1
+2,Ayenachew,Cherinet,Duka,Male,1985,Father,From Family,2012,Married,2009,15,Diploma,Private worker,Baptized,Member,911453475,Wuha Minch 1
+,Tigist,Tsebaye,Tsaha,Female,1989,Mother,2001,2004,Married,2009,15,First Degree,House Holder,Baptized,Choir,926400904,Wuha Minch 1
+,Ruhama ,Ayenachew,Cherinet,Female,2009,Child,,,Single,,,Primary school,Student,Non baptized,Choir,,Wuha Minch 1
+,Ruth,Ayenachew,Cherinet,Female,2013,Child,,,Single,,,Primary school,Student,Non baptized,Choir,,Wuha Minch 1
+,Melek,Ayenachew,Cherinet,Male,2016,Child,,,Single,,,Kindergarten,Student,Non baptized,Member,,Wuha Minch 1
+3,Tamirat,Tadesse,Alebachew,Male,1986,Father,2005,2008,Married,2009,15,Diploma,Private worker,Baptized,Member,928816576,Wuha Minch 1
+,Tigist,Belta,Bassa,Female,1991,Mother,2007,2007,Married,2009,15,Certificate,Private worker,Baptized,Member,931351135,Wuha Minch 1
+,Dibora,Tamirat,Tadesse,Female,2010,Child,2020,,Single,,,Primary school,Student,Non baptized,Member,,Wuha Minch 1
+,Yididya,Tamirat,Tadesse,Female,2016,Child,,,Single,,,Kindergarten,Student,Non baptized,Member,,Wuha Minch 1
+,Amanda,Tamirat,Tadesse,Female,2021,Child,,,Single,,,,,Non baptized,Member,,Wuha Minch 1
+,Tademe,Tamirat,Tadesse,Male,2009,,,,Single,,,Primary school,Student,Non baptized,Member,,Wuha Minch 1
+4,Asefa,Wakshum,,Male,1967,Father,1990,2007,Married,1991,33,,Private worker,Baptized,Member,911751690,Wuha Minch 1
+,Wudinesh ,Dendir,,Female,1981,Mother,1990,1998,Married,1991,33,,House Holder,Baptized,Member,,Wuha Minch 1
+,Henok,Asefa,Wakshum,Male,2003,Child,2016,2016,Single,,,High School,Student,Baptized,Child Coordinator,,Wuha Minch 1
+,Samuel ,Asefa,Wakshum,Male,1999,Child,2006,2016,Single,,,,Private worker,Baptized,Choir,921350216,Wuha Minch 1
+,Binyam,Asefa,Wakshum,Male,2008,Child,2017,,Single,,,Primary school,Student,Non baptized,Choir,,Wuha Minch 1
+,Elshalom,Asefa,Wakshum,Female,2017,Child,,,Single,,,Kindergarten,Student,Non baptized,,,Wuha Minch 1
+5,Daniel,Tadesse,,Male,1979,Father,1994,2004,Married,2010,14,Second Degree,Gov. worker,Baptized,Church Leader,996709658,Wuha Minch 1
+,Enatmesay,Zerihun,Zoze,Female,1983,Mother,1999,2010,Married,2010,14,Diploma,Gov. worker,Baptized,Choir,911568989,Wuha Minch 1
+,Shalom,Daniel,Tadesse,Female,2011,Child,From Family,,Single,,,Primary school,,Non baptized,Child Coordinator,,Wuha Minch 1
+,Yohana,Daniel,Tadesse,Female,2017,Child,From Family,,Single,,,Kindergarten,,Non baptized,Child Coordinator,,Wuha Minch 1
+,Eyael,Daniel,Tadesse,Female,2019,Child,From Family,,Single,,,,,Non baptized,Child Coordinator,,Wuha Minch 1
+6,Dawit,Kassa,Eyana,Male,1983,Father,1996,1998,Married,2008,16,First Degree,Evangelist,Baptized,Child Coordinator,913338225,Wuha Minch 1
+,Ferezer,Churiko,Barana,Female,1989,Mother,2004,2008,Married,2008,16,First Degree,Gov. worker,Baptized,Choir,910866911,Wuha Minch 1
+,Betselot,Dawit,Kassa,Female,2012,Child,2019,,Single,,,Primary school,Student,Non baptized,,,Wuha Minch 1
+,Bemnet,Dawit,Kassa,Female,2016,Child,,,Single,,,Kindergarten,Student,Non baptized,,,Wuha Minch 1
+7,Zekarias,Godebo,,Male,1988,Father,2001,2019,Single,2022,2,Second Degree,Gov. worker,Baptized,,939156823,Wuha Minch 1
+,Hirut,Asale,,Female,1994,Mother,From Family,2022,Married,2022,2,Certificate,Private worker,Baptized,,942633025,Wuha Minch 1
+,Natanim,Zekarias,Godebo,Male,2021,Child,,,,,,,,Non baptized,,,Wuha Minch 1
+8,Tigist,Tereda,,Female,1981,Mother,2001,2001,Married,1997,27,Secondary school,Private worker,Baptized,Member,916877681,Wuha Minch 1
+,Mihiret ,Hailu,,Female,2001,Child,2005,2005,Single,,,High School,Student,Baptized,,,Wuha Minch 1
+,Redieat,Hailu,,Female,2010,Child,,,Single,,,Primary school,Student,Non baptized,Choir,,Wuha Minch 1
+9,Mulualem,Mulugeta,,Male,1989,Father,2002,2015,Married,2018,6,First Degree,Gov. worker,Baptized,Choir,943972153,Wuha Minch 1
+,Endalech ,Adissu,,Female,1993,Mother,2008,2018,Married,2018,,Diploma,Gov. worker,Baptized,,908898926,Wuha Minch 1
+,Amasaya,Mulualem,Mulugeta,Male,2019,Child,,,Single,,,,,Non baptized,,,Wuha Minch 1
+,Betel,Mulualem,Mulugeta,Male,2020,Child,,,Single,,,,,Non baptized,,,Wuha Minch 1
+10,Kassu ,Asaminew,,Male,1979,Father,From Family,2014,Married,2006,18,Second Degree,Gov. worker,Baptized,Member,966896667,Wuha Minch 1
+,Kalkidan,Moges,,Female,1987,Mother,From Family,2014,Married,2006,18,Diploma,Gov. worker,Baptized,Choir,916714271,Wuha Minch 1
+,Bamlak,Kassa,Asaminew,Male,2011,Child,,,Single,,,Primary school,Student,Non baptized,,,Wuha Minch 1
+11,Begidu,Milko,,Male,1983,Father,2004,2004,Married,2004,20,,Private worker,Baptized,Member,912059498,Wuha Minch 1
+,Belaynesh,Fanta,,Female,1989,Mother,2004,2004,Married,2004,20,,Private worker,Baptized,Member,912059498,Wuha Minch 1
+,Yenenesh ,Begidu,Milko,Female,2004,Child,,2004,Single,,,High School,Student,Baptized,Choir,920083436,Wuha Minch 1
+,Meron,Begedu,Milko,Female,2009,Child,2020,2010,Single,,,Primary school,Student,Non baptized,Choir,,Wuha Minch 1
+,Kalkidan,Begedu,Milko,Female,2013,Child,,2014,Single,,,Primary school,Student,Non baptized,,,Wuha Minch 1

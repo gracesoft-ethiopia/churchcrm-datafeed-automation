@@ -16,42 +16,68 @@ export async function exitBrowser(driver) {
 }
 
 export async function saveMember(driver, member, currentFamily) {
-  await driver.get(
-    `${process.env.BASEURL}/PersonEditor.php?FamilyID=${currentFamily}`
-  );
-  await driver.wait(until.elementLocated(By.id('FirstName')));
+  try {
+    await driver.get(
+      `${process.env.BASEURL}/PersonEditor.php?FamilyID=${currentFamily}`
+    );
+    await driver.wait(until.elementLocated(By.id('FirstName')));
 
-  const gender = await driver.findElement(By.name('Gender'));
-  const firstName = await driver.findElement(By.name('FirstName'));
-  const middleName = await driver.findElement(By.name('MiddleName'));
-  const lastName = await driver.findElement(By.name('LastName'));
-  const birthMonth = await driver.findElement(By.name('BirthMonth'));
-  const birthDay = await driver.findElement(By.name('BirthDay'));
-  const birthYear = await driver.findElement(By.name('BirthYear'));
-  const familyRole = await driver.findElement(By.name('FamilyRole'));
+    const gender = await driver.findElement(By.id('Gender'));
+    const firstName = await driver.findElement(By.id('FirstName'));
+    const middleName = await driver.findElement(By.id('MiddleName'));
+    const lastName = await driver.findElement(By.id('LastName'));
+    const birthMonth = await driver.findElement(By.id('BirthMonth'));
+    const birthDay = await driver.findElement(By.id('BirthDay'));
+    const birthYear = await driver.findElement(By.id('BirthYear'));
+    const familyRole = await driver.findElement(By.name('FamilyRole'));
+    const becameChristian = await driver.findElement(By.name('c2'));
+    const membershipDate = await driver.findElement(By.name('MembershipDate'));
+    const educationLevel = await driver.findElement(By.name('c3'));
+    const occupation = await driver.findElement(By.name('c4'));
+    const baptizm = await driver.findElement(By.name('c5'));
 
-  const saveButton = await driver.findElement(By.name('PersonSubmitAndAdd'));
+    const saveButton = await driver.findElement(By.name('PersonSubmitAndAdd'));
 
-  // select object creation for select fields
-  const genderSelect = new Select(gender);
-  const birthMonthSelect = new Select(birthMonth);
-  const birthDaySelect = new Select(birthDay);
-  const familyRoleSelect = new Select(familyRole);
+    // select object creation for select fields
+    const genderSelect = new Select(gender);
+    const birthMonthSelect = new Select(birthMonth);
+    const birthDaySelect = new Select(birthDay);
+    const familyRoleSelect = new Select(familyRole);
+    const educationLevelSelect = new Select(educationLevel);
+    const occupationSelect = new Select(occupation);
+    const baptizmSelect = new Select(baptizm);
 
-  birthYear.clear();
+    birthYear.clear();
 
-  await genderSelect.selectByVisibleText(member['Gender']);
-  await firstName.sendKeys(member['First name']);
-  await middleName.sendKeys(member['Middle Name']);
-  await lastName.sendKeys(member['Last Name']);
-  await birthMonthSelect.selectByValue(randomToString(getRandomNumber(1, 12)));
-  await birthDaySelect.selectByVisibleText(getRandomNumber(1, 28).toString());
-  await birthYear.sendKeys(member['Birth Year']);
-  await familyRoleSelect.selectByValue(getFamilyRole(member));
+    await genderSelect.selectByVisibleText(member['Sex']);
+    await firstName.sendKeys(member['First name']);
+    await middleName.sendKeys(member['Last Name']);
+    await lastName.sendKeys(member['Middle Name']);
+    await birthMonthSelect.selectByValue(
+      randomToString(getRandomNumber(1, 12))
+    );
+    await birthDaySelect.selectByVisibleText(getRandomNumber(1, 28).toString());
+    await birthYear.sendKeys(member['Date of birth']);
+    await familyRoleSelect.selectByValue(getFamilyRole(member).toString());
+    await becameChristian.sendKeys(
+      member['Became Christian'] === 'From Family'
+        ? member['Date of birth']
+        : member['Became Christian']
+    );
+    if (member['Become member of the church'] !== '') {
+      await membershipDate.sendKeys(
+        getDate(member['Become member of the church'])
+      );
+    }
+    await educationLevelSelect.selectByVisibleText(member['Education Level']);
+    await occupationSelect.selectByVisibleText(member['Occupation']);
+    await baptizmSelect.selectByVisibleText(member['Baptism']);
 
-  await saveButton.click();
-
-  await driver.sleep(2000);
+    await saveButton.click();
+  } catch (error) {
+    console.log('Error saving member: ', error);
+    throw error;
+  }
 }
 
 const getRandomNumber = (min, max) => {
@@ -77,8 +103,12 @@ export async function saveFamily(driver, member) {
     const weddingDate = await driver.findElement(By.name('WeddingDate'));
     const saveButton = await driver.findElement(By.name('FamilySubmit'));
 
-    await familyName.sendKeys(`${member['First name']} ${member['Last Name']}`);
-    await weddingDate.sendKeys(getDate(member['የጋብቻ ዓ/ም']));
+    await familyName.sendKeys(
+      `${member['First name']} ${member['Middle Name']}`
+    );
+    if (member['Marriage Year'] !== '') {
+      await weddingDate.sendKeys(getDate(member['Marriage Year']));
+    }
 
     await saveButton.click();
 
